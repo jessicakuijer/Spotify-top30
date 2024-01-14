@@ -1,4 +1,7 @@
 {
+    "calliostro/spotify-web-api-bundle": {
+        "version": "v1.1.1"
+    },
     "doctrine/doctrine-bundle": {
         "version": "2.11",
         "recipe": {
