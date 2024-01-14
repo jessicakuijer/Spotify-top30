@@ -39,7 +39,6 @@ class SpotifyController extends AbstractController
         }, $top30->items);
 
         $playlistId = $this->getParameter('SPOTIFY_PLAYLIST_ID');
-
         $this->api->replacePlaylistTracks($playlistId, $top30TracksIds);
 
         return $this->render('spotify/index.html.twig', [
