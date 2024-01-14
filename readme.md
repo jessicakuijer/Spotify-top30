@@ -23,10 +23,7 @@ Based on the user's top tracks, this program will generate a playlist of the top
 - [Spotify Web API PHP](https://github.com/jwilsson/spotify-web-api-php)
 
 ## Demo
-- Go to my actual [Spotify playlist](https://open.spotify.com/playlist/2KycTiK4uGq03C1T6nSn9j?si=94773de73b1d4ca4).  
-Click on the "Pi" icon to generate a playlist.
-[Portfolio](https://jessicakuijer.com)
-- Refresh the Spotify playlist to see the generated playlist based on my top tracks.
+- TBA
 
 ## Credits
 - [Yoan Bernabeu](https://www.youtube.com/watch?v=tACijIGxNtk)
