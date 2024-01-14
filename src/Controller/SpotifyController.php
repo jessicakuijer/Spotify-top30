@@ -59,6 +59,7 @@ class SpotifyController extends AbstractController
         $cacheItem->set($this->session->getAccessToken());
         $cacheItem->expiresAfter(3600);
         $this->cache->save($cacheItem);
+        
         return $this->redirectToRoute('app_spotify_update_my_playlist');
     }
 
