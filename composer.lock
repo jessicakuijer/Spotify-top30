@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f38ae5809ddca501873d2ce5f56c3b0e",
+    "content-hash": "407210a34240f3aa54139c78cb733a22",
     "packages": [
         {
             "name": "calliostro/spotify-web-api-bundle",
@@ -9914,7 +9914,8 @@
     "platform": {
         "php": ">=8.2",
         "ext-ctype": "*",
-        "ext-iconv": "*"
+        "ext-iconv": "*",
+        "ext-intl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
