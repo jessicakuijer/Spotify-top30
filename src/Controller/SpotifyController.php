@@ -78,7 +78,6 @@ class SpotifyController extends AbstractController
                 'user-top-read',
             ],
         ];
-
         return $this->redirect($this->session->getAuthorizeUrl($options));
     }
 }
