@@ -27,7 +27,6 @@ class SpotifyController extends AbstractController
         if (!$this->cache->hasItem('spotify_access_token')) {
             return $this->redirectToRoute('app_spotify_redirect');
         }
-        
         $this->api->setAccessToken($this->cache->getItem('spotify_access_token')->get());
 
         $top30 = $this->api->getMyTop('tracks', [
