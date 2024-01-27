@@ -3,17 +3,15 @@
 {% block title %}Hello SpotifyController!{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_spotify_update_my_playlist') }}" role="button">Update this !</a>
     <article>
         <header>
-            <h1>Your actual top 30 Playlist in Spotify:</h1>
+            <h1>Your top 30 Playlist is updated in Spotify !</h1>
         </header>
-        <h3> Here is your LATEST Playlist : </h3>
+        <h3> Here is your NEW Playlist : </h3>
         <ul>
             {% for item in tracks.items %}
                 <li>{{ item.track.name }} - {{ item.track.artists[0].name }}</li>
             {% endfor %}
         </ul>
     </article>
-
 {% endblock %}

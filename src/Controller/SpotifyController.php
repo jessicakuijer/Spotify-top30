@@ -21,7 +21,15 @@ class SpotifyController extends AbstractController
     {
     }
 
-    #[Route('/', name: 'app_spotify_update_my_playlist')]
+    #[Route('/', name: 'app_spotify_index')]
+    public function index(): Response
+    {
+        return $this->render('spotify/index.html.twig', [
+            'tracks' => $this->api->getPlaylistTracks($this->getParameter('SPOTIFY_PLAYLIST_ID')),
+        ]);
+    }
+
+    #[Route('/update', name: 'app_spotify_update_my_playlist')]
     public function updateMyPlaylist(): Response
     {
         if (!$this->cache->hasItem('spotify_access_token')) {
@@ -41,7 +49,7 @@ class SpotifyController extends AbstractController
         $playlistId = $this->getParameter('SPOTIFY_PLAYLIST_ID');
         $this->api->replacePlaylistTracks($playlistId, $top30TracksIds);
 
-        return $this->render('spotify/index.html.twig', [
+        return $this->render('spotify/update.html.twig', [
             'tracks' => $this->api->getPlaylistTracks($playlistId),
         ]);
     }
