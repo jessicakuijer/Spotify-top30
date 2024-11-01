@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recommandations IA Spotify{% endblock %}
+
+{% block body %}
+    <article class="recommendations-container">
+        <header style="padding: 2rem 1rem;">
+            <h1 style="color: #ffffff; margin-bottom: 1rem;">Recommandations IA personnalisées</h1>
+            <p style="color: #b3b3b3;">Basées sur l'analyse approfondie de vos goûts musicaux</p>
+        </header>
+
+        <div class="insights-container">
+            <h2 style="color: #ffffff; margin-bottom: 1rem;">Analyse de vos préférences</h2>
+            
+            <div class="mood-chart">
+                {% for name, value in insights.mood_analysis %}
+                    {% if value is not iterable %}
+                        <div class="mood-item">
+                            <div style="color: #ffffff;">{{ name|replace({'_': ' '})|title }}</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: {{ value }}%"></div>
+                            </div>
+                            <div style="color: #b3b3b3; font-size: 0.9rem; margin-top: 0.5rem;">{{ value|round }}%</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            {% if insights.mood_analysis.description is defined %}
+                <div class="mood-descriptions">
+                    <h3 style="color: #ffffff; margin-bottom: 0.5rem;">Analyse d'ambiance</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        {% for description in insights.mood_analysis.description %}
+                            <li style="margin-bottom: 0.3rem;">• {{ description }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <h3 style="color: #ffffff; margin: 1.5rem 0 1rem;">Vos genres préférés</h3>
+            <div class="genre-list">
+                {% for genre, count in insights.preferred_genres %}
+                    <span class="genre-tag">{{ genre }} ({{ count }})</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="recommendations-grid">
+            {% for track in recommendations %}
+                <div class="track-card">
+                    {% if track.album.images[0] is defined %}
+                        <img src="{{ track.album.images[0].url }}" alt="Couverture {{ track.name }}" class="track-image">
+                    {% endif %}
+                    
+                    <div class="track-info">
+                        <div class="track-name">{{ track.name }}</div>
+                        <div class="track-artist">
+                            {% for artist in track.artists %}
+                                {{ artist.name }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="track-features">
+                            <span>Popularité: {{ track.popularity }}%</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="action-buttons">
+            <a href="{{ path('app_spotify_create_ai_recommendations_playlist') }}" class="spotify-button">
+                Créer une playlist IA avec ces titres
+            </a>
+            <a href="{{ path('app_spotify_index') }}" class="spotify-button" style="background: #333333;">
+                Retour à ma playlist
+            </a>
+        </div>
+    </article>
+{% endblock %}

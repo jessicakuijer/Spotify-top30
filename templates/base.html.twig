@@ -14,6 +14,15 @@
         {% endblock %}
     </head>
     <body>
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}" style="padding: 1rem; margin: 1rem; border-radius: 4px; 
+            {% if label == 'success' %}background: #1DB954; color: white;{% endif %}
+            {% if label == 'error' %}background: #FF4444; color: white;{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
         <main class="container">
             {% block body %}{% endblock %}
         </main>

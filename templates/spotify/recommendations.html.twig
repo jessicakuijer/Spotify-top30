@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spotify Recommendations{% endblock %}
+
+{% block body %}
+    <article class="recommendations-container">
+        <header style="padding: 2rem 1rem;">
+            <h1 style="color: #ffffff; margin-bottom: 1rem;">Découvrez vos recommandations personnalisées</h1>
+            <p style="color: #b3b3b3;">Basées sur vos écoutes récentes et vos artistes préférés</p>
+        </header>
+
+        <div class="action-buttons">
+            <a href="{{ path('app_spotify_create_recommendations_playlist') }}" class="spotify-button">
+                Créer une playlist avec ces titres
+            </a>
+            <a href="{{ path('app_spotify_index') }}" class="spotify-button" style="background: #333333;">
+                Retour à ma playlist
+            </a>
+        </div>
+
+        <div class="recommendations-grid">
+            {% for track in recommendations.tracks %}
+                <div class="track-card">
+                    {% if track.album.images[0] is defined %}
+                        <img src="{{ track.album.images[0].url }}" alt="Couverture {{ track.name }}" class="track-image">
+                    {% endif %}
+                    
+                    <div class="track-info">
+                        <div class="track-name">{{ track.name }}</div>
+                        <div class="track-artist">
+                            {% for artist in track.artists %}
+                                {{ artist.name }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="track-features">
+                            <span>Popularité: {{ track.popularity }}%</span>
+                            {% if track.preview_url %}
+                                <audio controls style="height: 30px;">
+                                    <source src="{{ track.preview_url }}" type="audio/mpeg">
+                                    Votre navigateur ne supporte pas l'élément audio.
+                                </audio>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if recommendations.tracks is empty %}
+            <div style="text-align: center; padding: 2rem; color: #b3b3b3;">
+                <p>Aucune recommandation n'est disponible pour le moment.</p>
+                <p>Essayez d'écouter plus de musique pour obtenir des recommandations personnalisées.</p>
+            </div>
+        {% endif %}
+    </article>
+{% endblock %}

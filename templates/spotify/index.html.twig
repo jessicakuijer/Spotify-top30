@@ -4,6 +4,9 @@
 
 {% block body %}
     <a href="{{ path('app_spotify_update_my_playlist') }}" role="button">Update this !</a>
+    <a href="{{ path('app_spotify_recommendations') }}" class="spotify-button">Recommandations classiques</a>
+    <a href="{{ path('app_spotify_ai_recommendations') }}" class="spotify-button">
+    Recommandations IA</a>
     <article>
         <header>
             <h1>Your actual top 30 Playlist in Spotify:</h1>
